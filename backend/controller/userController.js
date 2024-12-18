@@ -130,8 +130,9 @@ export const addNewDoctor = catchAsyncErrors(async(req,res,next)=>{
   if(!req.files || Object.keys(req.files).length === 0){
     return next(new ErrorHandler('Doctor Avatar Required', 400));
   }
+
   const {docAvatar}= req.files;
-  // const allowedFormat = ['image/png', 'image/jpg'];
+  // const allowedFormat = ['image/png', 'image/jpeg'];
   // if(!allowedFormat.includes(docAvatar.minetype)){
   //   return next( new ErrorHandler('File Format not supported', 400));
   // }
@@ -144,8 +145,9 @@ export const addNewDoctor = catchAsyncErrors(async(req,res,next)=>{
   if(isRegistered){
     return next(new ErrorHandler(`${isRegistered.role} already registered on this email`,400));
   };
+  console.log(req.files);
 
-  const cloudinaryResponse = await cloudinary.uploader.upload(docAvatar.tempthfilePath);
+  const cloudinaryResponse = await cloudinary.uploader.upload(docAvatar.tempFilePath);
   if(!cloudinaryResponse || cloudinaryResponse.error){
     console.error("Cloudinary error",cloudinaryResponse.error || "Unknown Cloudinary Error");
   }

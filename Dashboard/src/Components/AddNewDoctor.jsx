@@ -1,5 +1,8 @@
-import React,{useContext,} from 'react'
+import React,{useContext,useState} from 'react'
 import { context } from '../main';
+import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
+import axios from 'axios';
 export default function AddNewDoctor() {
 
   const { authenticated, setAuthenticated } = useContext(context);
@@ -29,10 +32,58 @@ export default function AddNewDoctor() {
     "ENT",
   ];
 
+  const handleAddNewDoctor=async(e)=>{
+    e.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("firstName", firstName);
+      formData.append("lastName", lastName);
+      formData.append("email", email);
+      formData.append("phone", phone);
+      formData.append("password", password);
+      formData.append("nic", nic);
+      formData.append("dob", dob);
+      formData.append("gender", gender);
+      formData.append("doctorDepartment", doctorDepartment);
+      formData.append("docAvatar", docAvatar);
+      await axios
+        .post("http://localhost:4000/api/v1/message/doctor/addnew", formData, {
+          withCredentials: true,
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then((res) => {
+          toast.success(res.data.message);
+          setAuthenticated(true);
+          navigateTo("/");
+          setFirstName("");
+          setLastName("");
+          setEmail("");
+          setPhone("");
+          setNic("");
+          setDob("");
+          setGender("");
+          setPassword("");
+        });
+    } catch (error) {
+      console.log(error.response.data.message);
+      toast.error(error.response.data.message);
+    }
+  }
+
+  const handleAvatar=(e)=>{
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setDocAvatarPreview(reader.result);
+      setDocAvatar(file);
+    };   
+  }
+
   return (
     <section className="page">
       <section className="container add-doctor-form">
-        <img src="/logo.png" alt="logo" className="logo"/>
+        <img src="/logo.png" alt="logo" height="200px" className="logo"/>
         <h1 className="form-title">REGISTER A NEW DOCTOR</h1>
         <form onSubmit={handleAddNewDoctor}>
           <div className="first-wrapper">

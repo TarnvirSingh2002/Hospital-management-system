@@ -14,7 +14,7 @@ export default function Message() {
           "http://localhost:4000/api/v1/message/getall",
           { withCredentials: true }
         );
-        setMessages(data.message);
+        setMessages([...data.message].reverse());
       } catch (error) {
         console.log(error.response.data.message);
       }

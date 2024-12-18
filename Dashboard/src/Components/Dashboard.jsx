@@ -9,6 +9,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 export default function Dashboard() {
 
   const [appointments, setAppointments] = useState([]);
+  const {doctorCount, authenticated, admin}=useContext(context);
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -45,7 +46,6 @@ export default function Dashboard() {
     }
   };
 
-  const { authenticated, admin } = useContext(context);
   if (!authenticated) {
     return <Navigate to={"/login"} />;
   }
@@ -58,16 +58,17 @@ export default function Dashboard() {
           <img src="/doc.png" alt="docImg" />
           <div className="content">
             <div>
-              <p>Hello ,</p>
+              <p>Hello, </p>
               <h5>
                 {admin &&
                   `${admin.firstName} ${admin.lastName}`}{" "}
               </h5>
             </div>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Facilis, nam molestias. Eaque molestiae ipsam commodi neque.
-              Assumenda repellendus necessitatibus itaque.
+            We are delighted to welcome you to our online community. 
+            We hope you find our platform a valuable resource for connecting with other 
+            healthcare professionals, accessing the latest medical information, and sharing your 
+            expertise.
             </p>
           </div>
         </div>
@@ -77,7 +78,7 @@ export default function Dashboard() {
         </div>
         <div className="thirdBox">
           <p>Registered Doctors</p>
-          <h3>12</h3>
+          <h3>{doctorCount}</h3>
         </div>
       </div>
       <div className="banner">

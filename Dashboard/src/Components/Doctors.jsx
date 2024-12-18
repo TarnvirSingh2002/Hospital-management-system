@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 
 export default function Doctors() {
   const [doctors, setDoctors] = useState([]);
-  const { authenticated } = useContext(context);
+  const { authenticated, setdoctorCount } = useContext(context);
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
@@ -21,6 +21,9 @@ export default function Doctors() {
     };
     fetchDoctors();
   }, []);
+
+  setdoctorCount(doctors.length);
+  
   if (!authenticated) {
     return <Navigate to="/login" />;
   }
