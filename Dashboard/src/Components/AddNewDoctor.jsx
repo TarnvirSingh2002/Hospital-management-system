@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import axios from 'axios';
 export default function AddNewDoctor() {
 
-  const { authenticated, setAuthenticated } = useContext(context);
+  const { setAuthenticated } = useContext(context);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -65,7 +65,6 @@ export default function AddNewDoctor() {
           setPassword("");
         });
     } catch (error) {
-      console.log(error.response.data.message);
       toast.error(error.response.data.message);
     }
   }

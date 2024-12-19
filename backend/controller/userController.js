@@ -145,7 +145,6 @@ export const addNewDoctor = catchAsyncErrors(async(req,res,next)=>{
   if(isRegistered){
     return next(new ErrorHandler(`${isRegistered.role} already registered on this email`,400));
   };
-  console.log(req.files);
 
   const cloudinaryResponse = await cloudinary.uploader.upload(docAvatar.tempFilePath);
   if(!cloudinaryResponse || cloudinaryResponse.error){

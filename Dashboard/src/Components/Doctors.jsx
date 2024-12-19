@@ -1,28 +1,9 @@
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import React, { useContext } from "react";
 import { context } from "../main";
 import { Navigate } from "react-router-dom";
 
 export default function Doctors() {
-  const [doctors, setDoctors] = useState([]);
-  const { authenticated, setdoctorCount } = useContext(context);
-  useEffect(() => {
-    const fetchDoctors = async () => {
-      try {
-        const { data } = await axios.get(
-          "http://localhost:4000/api/v1/message/doctors",
-          { withCredentials: true }
-        );
-        setDoctors(data.doctors);
-      } catch (error) {
-        toast.error(error.response.data.message);
-      }
-    };
-    fetchDoctors();
-  }, []);
-
-  setdoctorCount(doctors.length);
+  const { authenticated, doctors} = useContext(context);
   
   if (!authenticated) {
     return <Navigate to="/login" />;

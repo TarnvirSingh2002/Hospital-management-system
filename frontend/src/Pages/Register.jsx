@@ -15,6 +15,7 @@ function Register() {
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
+  const navigateTo=useNavigate();
 
   const handleRegistration = async (e) => {
     e.preventDefault();
