@@ -13,6 +13,7 @@ import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Context } from './main'
 import Footer from "./components/Footer";
+import MessageBoard from "./Pages/MessageBoard";
 
 export default function App() {
   const { isAuthenticated, setIsAuthenticated, setUser  }=useContext(Context);
@@ -46,6 +47,7 @@ export default function App() {
           <Route path='/about' element={<Aboutus/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/allmessages' element={<MessageBoard/>}/>
         </Routes>
         <Footer/>
         <ToastContainer position="top-center"/>

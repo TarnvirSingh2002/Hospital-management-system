@@ -61,7 +61,7 @@ export default function Dashboard() {
               <p>Hello, </p>
               <h5>
                 {admin &&
-                  `${admin.firstName} ${admin.lastName}`}{" "}
+                  `${admin.firstName} ${admin.lastName}`}{"Tarn"}
               </h5>
             </div>
             <p>

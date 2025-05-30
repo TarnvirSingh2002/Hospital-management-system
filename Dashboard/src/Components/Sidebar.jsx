@@ -10,6 +10,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { context } from "../main";
 import { useNavigate } from "react-router-dom";
+// import { LuMessageCircleMore } from "react-icons/lu";
 export default function Sidebar() {
 
   const [show, setShow] = useState(false);
@@ -53,6 +54,9 @@ export default function Sidebar() {
     navigateTo("/admin/addnew");
     setShow(!show);
   };
+  // const gotoprivatemessage=()=>{
+  //   //willdo
+  // }
   return (
     <>
       <nav
@@ -65,6 +69,7 @@ export default function Sidebar() {
           <MdAddModerator onClick={gotoAddNewAdmin} />
           <IoPersonAddSharp onClick={gotoAddNewDoctor} />
           <AiFillMessage onClick={gotoMessagesPage} />
+          {/* <LuMessageCircleMore onClick={gotoprivatemessage}/> */}
           <RiLogoutBoxFill onClick={handleLogout} />
         </div>
       </nav>

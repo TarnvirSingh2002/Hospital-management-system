@@ -22,7 +22,7 @@ const MessageForm = () => {
           }
         )
         .then((res) => {
-          toast.success(res.data.message);
+          toast.success(res.data.msg);
           setFirstName("");
           setLastName("");
           setEmail("");

@@ -1,0 +1,15 @@
+{
+  "name": "food",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "backend":"cd backend && nodemon index.js",
+    "frontend":"cd frontend && npm run dev",
+    "Dashboard":"cd Dashboard && npm run dev",
+    "both": "concurrently \"npm run dev --prefix Dashboard\" \"npm run dev --prefix frontend\" \"npm run dev --prefix backend\""
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

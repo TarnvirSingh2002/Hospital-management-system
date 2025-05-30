@@ -23,6 +23,17 @@ import appointmentRouter from "./router/appointmentRouter.js"
 
 const app = express();
 
+import { Server } from 'socket.io';
+import { createServer } from "http";
+
+const server = createServer(app);
+export const io = new Server(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"],
+        credentials: true
+    }
+});
 app.use(cors({
     origin:[process.env.FRONTEND_URL, process.env.DASHBOARD_URL],//only these origins are valid
     methods:["GET", "POST", "PUT", "DELETE"],//the methods that we will use
